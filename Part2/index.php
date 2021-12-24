@@ -1,7 +1,10 @@
+<!-- Including functions.php file. 
+Otherwise server will not get access to Class and methods -->
 <?php
 include_once "functions.php"
 ?>
 
+<!-- Form to take input -->
     <form method="POST">
         <label for="firstNumber">First Number</label><br>
         <input type="number" name="firstNumber" id="firstNumber" placeholder="First Number" required><br>
@@ -17,18 +20,24 @@ include_once "functions.php"
         <input type="submit" value="Calculate">
     </form>
 
-
+<!-- Business logic -->
 <?php
-$calculator = new Calculator();
+
+$calculator = new Calculator(); //Creating object
+
+// if request method is post then this block will be executed
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // Assigning values into variables
     $operation = $_POST["operation"];
     $firstNumber = $_POST["firstNumber"];
     $secondNumber = $_POST["secondNumber"];
 
+    // Assigning values in object's variable
     $calculator->firstNumber = $firstNumber;
     $calculator->secondNumber = $secondNumber;
 
+    // Condition for arithmatic operations
     if ($operation == "sum") {
         $calculator->sum();
     } else if ($operation == "sub") {
